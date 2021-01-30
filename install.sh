@@ -30,8 +30,7 @@ if [ ! -f ~/.maol/web/index.html ]; then
   launchctl load ~/Library/LaunchAgents/com.naatula.maol.plist
   launchctl start com.naatula.maol
   rm -r ~/.maol/squashfs ~/.maol/ytl ~/.maol/koe-etcher.zip
-  echo "\nMAOL on nyt asennettu osoitteeseen http://localhost:3401 \nKannattaa lisätä se esimerkiksi selaimesi kirjanmerkkeihin"
-  echo "\nAsennus on valmis"
+  echo "\nMAOL on asennettu osoitteeseen http://localhost:3401"
   open 'http://localhost:3401/'
 else
   echo '\nMAOL on jo asennettu'
