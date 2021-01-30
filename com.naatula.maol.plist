@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.naatula.maol</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>zsh</string>
+    <string>-c</string>
+    <string>cd ~/.maol/web && python3 -m http.server 3401 --bind 127.0.0.1</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
