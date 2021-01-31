@@ -8,7 +8,6 @@ resource(){
   return 0
 }
 if [ ! -f ~/.maol/web/index.html ]; then
-  xcode-select --install > /dev/null 2>&1
   brew --version >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   type unsquashfs >/dev/null 2>&1 || brew install squashfs
   mkdir -p ~/.maol
