@@ -8,9 +8,6 @@ resource(){
   return 0
 }
 if [ ! -f ~/.maol/web/index.html ]; then
-  echo "\nLuodaanko pikakuvake työpöydälle? [k/e]"
-  read -k shortcut
-  echo
   xcode-select --install > /dev/null 2>&1
   brew --version >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   type unsquashfs >/dev/null 2>&1 || brew install squashfs
@@ -23,9 +20,6 @@ if [ ! -f ~/.maol/web/index.html ]; then
   unsquashfs -q -d ~/.maol/squashfs $VOLNAME/live/filesystem.squashfs /usr/local/share/maol-digi
   mv ~/.maol/squashfs/usr/local/share/maol-digi/content ~/.maol/web
   diskutil quiet unmount $VOLNAME
-  if [ "$shortcut" = "k" ]; then
-    resource MAOL.webloc ~/Desktop/MAOL.webloc
-  fi
   resource com.naatula.maol.plist ~/Library/LaunchAgents/com.naatula.maol.plist
   launchctl load ~/Library/LaunchAgents/com.naatula.maol.plist
   launchctl start com.naatula.maol
