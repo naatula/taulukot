@@ -19,6 +19,7 @@ if [ ! -f ~/.maol/web/index.html ]; then
   unsquashfs -q -d ~/.maol/squashfs $VOLNAME/live/filesystem.squashfs /usr/local/share/maol-digi
   mv ~/.maol/squashfs/usr/local/share/maol-digi/content ~/.maol/web
   diskutil quiet unmount $VOLNAME
+  mkdir -p ~/Library/LaunchAgents/
   resource com.naatula.maol.plist ~/Library/LaunchAgents/com.naatula.maol.plist
   launchctl load ~/Library/LaunchAgents/com.naatula.maol.plist
   launchctl start com.naatula.maol
