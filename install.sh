@@ -55,6 +55,7 @@ unzip -qo $DL ytl/koe.img -d ~/.maol/ || {
 VOLNAME=`hdiutil attach ~/.maol/ytl/koe.img | grep -o '/Volumes/ABITTI.*'`
 unsquashfs -q -d ~/.maol/squashfs $VOLNAME/live/filesystem.squashfs /usr/local/share/maol-digi
 mv ~/.maol/squashfs/usr/local/share/maol-digi/content ~/.maol/web
+curl https://oppimisenpalvelut.otava.fi/favicon.ico --progress-bar -m 5 --output ~/.maol/web/favicon.ico
 diskutil quiet unmount $VOLNAME
 mkdir -p ~/Library/LaunchAgents/
 resource fi.simonaatula.maol.plist ~/Library/LaunchAgents/fi.simonaatula.maol.plist
