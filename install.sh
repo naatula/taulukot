@@ -1,6 +1,6 @@
 #!/bin/zsh
 if [[ "$(uname)" != "Darwin" ]]; then
-  echo "Only supported on macOS"
+  echo "Vain macOS on tuettu"
   exit 1
 fi
 
