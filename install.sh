@@ -19,9 +19,9 @@ if [ -f ~/.maol/web/index.html ]; then
   echo
   if [[ "$A" =~ [pPuU] ]]; then
     echo "Poistetaan palvelu..."
-    launchctl stop com.naatula.maol
-    launchctl unload ~/Library/LaunchAgents/com.naatula.maol.plist
-    rm -f ~/Library/LaunchAgents/com.naatula.maol.plist
+    launchctl stop fi.simonaatula.maol
+    launchctl unload ~/Library/LaunchAgents/fi.simonaatula.maol.plist
+    rm -f ~/Library/LaunchAgents/fi.simonaatula.maol.plist
     echo "Poistetaan tiedostot..."
     rm -rf ~/.maol
     rm -f ~/Desktop/MAOL.webloc 
@@ -56,9 +56,9 @@ unsquashfs -q -d ~/.maol/squashfs $VOLNAME/live/filesystem.squashfs /usr/local/s
 mv ~/.maol/squashfs/usr/local/share/maol-digi/content ~/.maol/web
 diskutil quiet unmount $VOLNAME
 mkdir -p ~/Library/LaunchAgents/
-resource com.naatula.maol.plist ~/Library/LaunchAgents/com.naatula.maol.plist
-launchctl load ~/Library/LaunchAgents/com.naatula.maol.plist
-launchctl start com.naatula.maol
+resource fi.simonaatula.maol.plist ~/Library/LaunchAgents/fi.simonaatula.maol.plist
+launchctl load ~/Library/LaunchAgents/fi.simonaatula.maol.plist
+launchctl start fi.simonaatula.maol
 rm -rf ~/.maol/squashfs ~/.maol/ytl ~/.maol/koe-etcher.zip
 echo "\nMAOL on asennettu osoitteeseen http://localhost:3401"
 open 'http://localhost:3401/'

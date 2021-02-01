@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.naatula.maol</string>
+  <string>fi.simonaatula.maol</string>
   <key>ProgramArguments</key>
   <array>
     <string>zsh</string>
