@@ -1,4 +1,8 @@
 #!/bin/zsh
+if [[ "$(uname)" != "Darwin" ]]; then
+  echo "Only supported on macOS"
+  exit 1
+fi
 resource(){
   if [ -f "./$1" ]; then
     cp "./$1" "$2"
