@@ -14,9 +14,8 @@ resource(){
 }
 
 if [ -f ~/.maol/web/index.html ]; then
-  echo '\nMAOL on jo asennettu\n[P] Poista asennus\n[U] Poista ja asenna uudelleen'
+  echo 'MAOL on jo asennettu\n[P] Poista asennus\n[U] Poista ja asenna uudelleen'
   read -k A
-  echo
   if [[ "$A" =~ [pPuU] ]]; then
     echo "Poistetaan palvelu..."
     launchctl stop fi.simonaatula.maol
@@ -60,6 +59,6 @@ resource fi.simonaatula.maol.plist ~/Library/LaunchAgents/fi.simonaatula.maol.pl
 launchctl load ~/Library/LaunchAgents/fi.simonaatula.maol.plist
 launchctl start fi.simonaatula.maol
 rm -rf ~/.maol/squashfs ~/.maol/ytl ~/.maol/koe-etcher.zip
-echo "\nMAOL on asennettu osoitteeseen http://localhost:3401"
+echo "MAOL on asennettu osoitteeseen http://localhost:3401"
 open 'http://localhost:3401/'
 exit 0
