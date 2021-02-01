@@ -29,8 +29,10 @@ if [ -f ~/.maol/web/index.html ]; then
   if [[ ! "$A" =~ [uU] ]]; then exit 0; fi
 fi
 
-brew --version >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-type unsquashfs >/dev/null 2>&1 || brew install squashfs
+type unsquashfs >/dev/null 2>&1 || {
+  brew --version >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew install squashfs
+}
 mkdir -p ~/.maol
 if [ -f ~/Downloads/koe-etcher.zip ]; then
   echo "Käytetään asennuspakettia ~/Downloads/koe-etcher.zip"
