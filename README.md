@@ -1,11 +1,17 @@
-# Paikalliset MAOL-digitaulukot
+# Asennettavat MAOL-digitaulukot
 
-Tämä skripti asentaa MAOL-digitaulukot paikallisesti macOS-tietokoneeseen. Voit käyttää taulukoita asennuksen jälkeen ilman internet-yhteyttä.
+Tämä skripti luo MAOL-digitaulukoista asennuspaketit macOS- ja Windows-järjestelmiä varten. Voit käyttää taulukoita asennuksen jälkeen ilman internet-yhteyttä.
 
-## Asentaminen
+Valmiita asennuspaketteja ei ole saatavana tekijänoikeuksien vuoksi.
 
-Avaa Pääte, ja suorita siinä seuraava komento:
+## Käyttö
+
+Avaa macOS Pääte, ja suorita siinä seuraava komento:
 
 ```sh
 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/naatula/maol/master/online.sh)"
 ```
+
+- Asennuspaketit tallennetaan Lataukset-kansioon, josta ne on helppo siirtää esimerkiksi Windows-laitteelle.
+
+- Luonnin jälkeen ohjelma avaa macOS-paketin asentamista varten automaattisesti.
