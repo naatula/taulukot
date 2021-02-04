@@ -29,9 +29,9 @@ cd app
 yarn install
 yarn dist -mw
 DMG=`find dist -name "*.dmg" | grep -Eo "/[^/]+.dmg"`
-mkdir ~/Downloads/MAOL
+mkdir -p ~/Downloads/MAOL
 mv dist/*.exe dist/*.dmg ~/Downloads/MAOL/
-open ~/Downloads/MAOL$DMG
+open ~/Downloads/MAOL$DMG ~/Downloads/MAOL
 echo "Valmis!"
 
 exit 0
