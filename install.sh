@@ -4,64 +4,44 @@ if [[ "$(uname)" != "Darwin" ]]; then
   exit 1
 fi
 
-resource(){
-  if [ -f "./$1" ]; then
-    cp "./$1" "$2"
-  else
-    curl "https://raw.githubusercontent.com/naatula/maol/master/$1" --progress-bar --output "$2"
-  fi
-  return 0
-}
+brew --version >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+type unsquashfs >/dev/null 2>&1 || brew install squashfs
+type yarn >/dev/null 2>&1 || brew install yarn
 
-if [ -f ~/.maol/web/index.html ]; then
-  echo 'MAOL on jo asennettu\n[P] Poista asennus\n[U] Poista ja asenna uudelleen'
-  read -k A
-  if [[ "$A" =~ [pPuU] ]]; then
-    echo "Poistetaan palvelu..."
-    launchctl stop fi.simonaatula.maol
-    launchctl unload ~/Library/LaunchAgents/fi.simonaatula.maol.plist
-    rm -f ~/Library/LaunchAgents/fi.simonaatula.maol.plist
-    echo "Poistetaan tiedostot..."
-    rm -rf ~/.maol
-    rm -f ~/Desktop/MAOL.webloc 
-    echo "Asennus poistettu"
-  fi
-  if [[ ! "$A" =~ [uU] ]]; then exit 0; fi
-fi
-
-type unsquashfs >/dev/null 2>&1 || {
-  brew --version >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew install squashfs
-}
-mkdir -p ~/.maol
+mkdir -p ./dl
 if [ -f ~/Downloads/koe-etcher.zip ]; then
-  echo "Käytetään asennuspakettia ~/Downloads/koe-etcher.zip"
+  echo "Käytetään Abittia ~/Downloads/koe-etcher.zip"
   DL=~/Downloads/koe-etcher.zip
 else
-  echo "Ladataan asennuspakettia..."
-  curl http://static.abitti.fi/etcher-usb/koe-etcher.zip -C - --progress-bar --output ~/.maol/koe-etcher.zip
-  DL=~/.maol/koe-etcher.zip
+  echo "Ladataan Abittia..."
+  curl http://static.abitti.fi/etcher-usb/koe-etcher.zip -C - --progress-bar --output ./dl/koe-etcher.zip
+  DL=./dl/koe-etcher.zip
 fi
-echo "Asennetaan..."
-unzip -qo $DL ytl/koe.img -d ~/.maol/ || {
-  echo "Viallinen asennuspaketti"
+echo "Puretaan..."
+unzip -qo $DL ytl/koe.img -d ./dl/ || {
+  echo "Viallinen paketti"
   if [[ $DL == ~/Downloads/koe-etcher.zip ]]; then
     echo "Poista Lataukset-kansiosta koe-etcher.zip ja yritä uudelleen"
   else
-    rm -rf ~/.maol/koe-etcher.zip
+    rm -rf ./dl/koe-etcher.zip
   fi
   exit 1
 }
-VOLNAME=`hdiutil attach ~/.maol/ytl/koe.img | grep -o '/Volumes/ABITTI.*'`
-unsquashfs -q -d ~/.maol/squashfs $VOLNAME/live/filesystem.squashfs /usr/local/share/maol-digi
-mv ~/.maol/squashfs/usr/local/share/maol-digi/content ~/.maol/web
-curl https://oppimisenpalvelut.otava.fi/favicon.ico --progress-bar -m 5 --output ~/.maol/web/favicon.ico
+VOLNAME=`hdiutil attach ./dl/ytl/koe.img | grep -o '/Volumes/ABITTI.*'`
+unsquashfs -q -d ./dl/squashfs $VOLNAME/live/filesystem.squashfs /usr/local/share/maol-digi
+mv ./dl/squashfs/usr/local/share/maol-digi/content ./app/content
+mkdir -p ./app/build
+curl https://opiskelija.otava.fi/android-chrome-512x512.png --progress-bar -m 5 --output ./app/build/icon.png || {
+  echo "Kuvakkeen lataus epäonnistui"
+  exit 1
+}
 diskutil quiet unmount $VOLNAME
-mkdir -p ~/Library/LaunchAgents/
-resource fi.simonaatula.maol.plist ~/Library/LaunchAgents/fi.simonaatula.maol.plist
-launchctl load ~/Library/LaunchAgents/fi.simonaatula.maol.plist
-launchctl start fi.simonaatula.maol
-rm -rf ~/.maol/squashfs ~/.maol/ytl ~/.maol/koe-etcher.zip
-echo "MAOL on asennettu osoitteeseen http://localhost:3401"
-open 'http://localhost:3401/'
+cd app
+yarn dist -mw
+DMG=`find dist -name "*.dmg" | grep -Eo "/[^/]+.dmg"`
+mkdir ~/Downloads/MAOL
+mv dist/*.exe dist/*.dmg ~/Downloads/MAOL/
+open ~/Downloads/MAOL$DMG
+echo "Valmis!"
+
 exit 0

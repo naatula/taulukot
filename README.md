@@ -7,11 +7,5 @@ Tämä skripti asentaa MAOL-digitaulukot paikallisesti macOS-tietokoneeseen. Voi
 Avaa Pääte, ja suorita siinä seuraava komento:
 
 ```sh
-/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/naatula/maol/master/install.sh)"
+/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/naatula/maol/master/online.sh)"
 ```
-
-## Käyttö
-
-Mene selaimella osoitteeseen http://localhost:3401
-
-Kannattaa luoda kirjanmerkki!

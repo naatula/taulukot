@@ -1,0 +1,30 @@
+{
+  "name": "digitaulukot",
+  "productName": "MAOL-digitaulukot",
+  "version": "0.1.0",
+  "description": "MAOL-digitaulukot sisältää matematiikan, fysiikan ja kemian keskeisimmät merkinnät, taulukot ja laskukaavat lukio-opintoihin.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron .",
+    "build": "electron-builder --dir -c.mac.identity=null",
+    "dist": "electron-builder -c.mac.identity=null"
+  },
+  "keywords": [
+    "taulukot",
+    "digitaulukot"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "build": {
+    "appId": "fi.simonaatula.digitaulukot",
+    "copyright": "Copyright © 2020",
+    "mac": {
+      "category": "public.app-category.education",
+      "darkModeSupport": false
+    }
+  },
+  "devDependencies": {
+    "electron": "^11.2.2",
+    "electron-builder": "^22.9.1"
+  }
+}
