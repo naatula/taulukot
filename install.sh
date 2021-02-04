@@ -1,12 +1,4 @@
 #!/bin/zsh
-if [[ "$(uname)" != "Darwin" ]]; then
-  echo "Vain macOS on tuettu"
-  exit 1
-fi
-
-brew --version >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-type unsquashfs >/dev/null 2>&1 || brew install squashfs
-type yarn >/dev/null 2>&1 || brew install yarn
 
 mkdir -p ./dl
 if [ -f ~/Downloads/koe-etcher.zip ]; then
@@ -33,10 +25,10 @@ mv ./dl/squashfs/usr/local/share/maol-digi/content ./app/content
 mkdir -p ./app/build
 curl https://opiskelija.otava.fi/android-chrome-512x512.png --progress-bar -m 5 --output ./app/build/icon.png || {
   echo "Kuvakkeen lataus epäonnistui"
-  exit 1
 }
 diskutil quiet unmount $VOLNAME
 cd app
+yarn install
 yarn dist -mw
 DMG=`find dist -name "*.dmg" | grep -Eo "/[^/]+.dmg"`
 mkdir ~/Downloads/MAOL
