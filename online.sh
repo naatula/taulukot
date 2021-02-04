@@ -1,5 +1,5 @@
 STARTPWD=`pwd`
-DIRECTORY="~/.maol-tmp"
+DIRECTORY=~/.maol-tmp
 
 if [[ "$(uname)" != "Darwin" ]]; then
   echo "Vain macOS on tuettu"
