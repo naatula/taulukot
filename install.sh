@@ -22,10 +22,15 @@ unzip -qo $DL ytl/koe.img -d ./dl/ || {
 VOLNAME=`hdiutil attach ./dl/ytl/koe.img | grep -o '/Volumes/ABITTI.*'`
 unsquashfs -q -d ./dl/squashfs $VOLNAME/live/filesystem.squashfs /usr/local/share/maol-digi
 mv ./dl/squashfs/usr/local/share/maol-digi/content ./app/content
-mkdir -p ./app/build
-curl https://opiskelija.otava.fi/android-chrome-512x512.png -s -m 5 --output ./app/build/icon.png || echo "Kuvakkeen lataus epäonnistui"
 diskutil quiet unmount $VOLNAME
 cd app
+mkdir -p ./build
+curl https://opiskelija.otava.fi/android-chrome-512x512.png -s -m 5 --output ./build/icon.png || echo "Kuvakkeen lataus epäonnistui"
+convert build/icon.png -resize 256x256 build/icon-256.png
+convert build/icon.png -resize 48x48 build/icon-48.png
+convert build/icon.png -resize 32x32 build/icon-32.png
+convert build/icon.png -resize 16x16 build/icon-16.png
+convert build/icon-256.png build/icon-48.png build/icon-32.png build/icon-16.png build/icon.ico
 yarn install
 yarn dist -mw
 DMG=`find dist -name "*.dmg" | grep -Eo "/[^/]+.dmg"`

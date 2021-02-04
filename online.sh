@@ -9,6 +9,7 @@ fi
 brew --version >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 type unsquashfs >/dev/null 2>&1 || brew install squashfs
 type yarn >/dev/null 2>&1 || brew install yarn
+type convert >/dev/null 2>&1 || brew install imagemagick
 
 rm -rf $DIRECTORY
 git clone --quiet https://github.com/naatula/maol $DIRECTORY
