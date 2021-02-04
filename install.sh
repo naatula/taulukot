@@ -23,9 +23,7 @@ VOLNAME=`hdiutil attach ./dl/ytl/koe.img | grep -o '/Volumes/ABITTI.*'`
 unsquashfs -q -d ./dl/squashfs $VOLNAME/live/filesystem.squashfs /usr/local/share/maol-digi
 mv ./dl/squashfs/usr/local/share/maol-digi/content ./app/content
 mkdir -p ./app/build
-curl https://opiskelija.otava.fi/android-chrome-512x512.png --progress-bar -m 5 --output ./app/build/icon.png || {
-  echo "Kuvakkeen lataus epäonnistui"
-}
+curl https://opiskelija.otava.fi/android-chrome-512x512.png -s -m 5 --output ./app/build/icon.png || echo "Kuvakkeen lataus epäonnistui"
 diskutil quiet unmount $VOLNAME
 cd app
 yarn install
