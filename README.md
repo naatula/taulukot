@@ -7,7 +7,7 @@ Valmiita asennuspaketteja ei ole saatavana tekijänoikeuksien vuoksi.
 ## Käyttö
 
 ```sh
-/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/naatula/maol/master/online.sh)"
+/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/naatula/taulukot/master/online.sh)"
 ```
 
 - Asennuspaketit tallennetaan Lataukset-kansioon, josta ne on helppo siirtää muille laitteille.
