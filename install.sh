@@ -6,7 +6,7 @@ if [ -f ~/Downloads/koe-etcher.zip ]; then
   DL=~/Downloads/koe-etcher.zip
 else
   echo "Ladataan Abittia..."
-  curl http://static.abitti.fi/etcher-usb/koe-etcher.zip -C - --progress-bar --output ./dl/koe-etcher.zip
+  curl http://static.abitti.fi/etcher-usb/koe-etcher.zip -L -C - --progress-bar --output ./dl/koe-etcher.zip
   DL=./dl/koe-etcher.zip
 fi
 echo "Puretaan..."
