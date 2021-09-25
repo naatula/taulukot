@@ -32,7 +32,7 @@ convert build/icon.png -resize 32x32 build/icon-32.png
 convert build/icon.png -resize 16x16 build/icon-16.png
 convert build/icon-256.png build/icon-48.png build/icon-32.png build/icon-16.png build/icon.ico
 yarn install
-yarn dist -mw
+yarn dist -mwl
 DMG=`find dist -name "*.dmg" | grep -Eo "/[^/]+.dmg"`
 mkdir -p ~/Downloads/MAOL
 mv dist/*.exe dist/*.dmg ~/Downloads/MAOL/
